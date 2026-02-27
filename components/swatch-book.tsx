@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
 import { UISwatch } from "./ui-swatch"
 import { SwatchDetail } from "./swatch-detail"
 
@@ -174,7 +174,12 @@ const UI_COLLECTIONS = [
   },
 ]
 
-export function SwatchBook() {
+interface SwatchBookProps {
+  sidebar?: ReactNode
+  showCoverHeader?: boolean
+}
+
+export function SwatchBook({ sidebar, showCoverHeader = true }: SwatchBookProps) {
   const [selectedDesign, setSelectedDesign] = useState<UIDesign | null>(null)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
@@ -187,12 +192,13 @@ export function SwatchBook() {
   const totalDesigns = UI_COLLECTIONS.reduce((acc, c) => acc + c.designs.length, 0)
 
   return (
-    <div className="min-h-screen bg-background paper-texture">
+    <div className="h-full overflow-hidden bg-background paper-texture">
       {/* Background desk surface */}
-      <div className="min-h-screen flex flex-col">
+      <div className="h-full overflow-hidden flex flex-col">
         {/* ── BOOK COVER / TITLE PAGE ── */}
-        <header className="pt-12 lg:pt-20 pb-8 lg:pb-12 px-6">
-          <div className="max-w-5xl mx-auto text-center">
+        {showCoverHeader && (
+          <header className="shrink-0 px-4 pb-3 pt-4 lg:px-6 lg:pb-4 lg:pt-6">
+            <div className="mx-auto w-full max-w-[1600px] text-center">
             {/* Ornamental top rule */}
             <div className="flex items-center justify-center gap-4 mb-8">
               <div className="w-16 h-px bg-foreground/20" />
@@ -237,14 +243,15 @@ export function SwatchBook() {
               <div className="w-1.5 h-1.5 rotate-45 border border-foreground/20" />
               <div className="w-24 h-px bg-foreground/15" />
             </div>
-          </div>
-        </header>
+            </div>
+          </header>
+        )}
 
         {/* ── BOOK BODY ── */}
-        <div className="flex-1 px-4 lg:px-12 pb-12">
-          <div className="max-w-6xl mx-auto">
+        <div className="flex-1 min-h-0 px-3 pb-4 lg:px-8">
+          <div className="mx-auto h-full w-full max-w-[1800px]">
             {/* Book container with spine */}
-            <div className="book-container relative overflow-hidden">
+            <div className="book-container relative h-full overflow-hidden">
               {/* Spine */}
               <div className="book-spine hidden lg:block">
                 <span className="book-spine-title font-sans">Atelier UI</span>
@@ -254,7 +261,7 @@ export function SwatchBook() {
               <div className="bookmark-ribbon hidden lg:block" />
 
               {/* Page content area (offset for spine) */}
-              <div className="lg:ml-9">
+              <div className="h-full lg:ml-9 flex flex-col">
                 {/* Chapter tabs */}
                 <nav className="border-b border-border/60 bg-card/80 backdrop-blur-sm sticky top-0 z-40">
                   <div className="flex items-center gap-0.5 overflow-x-auto px-4 lg:px-8 pt-2">
@@ -283,10 +290,10 @@ export function SwatchBook() {
                 </nav>
 
                 {/* Page content */}
-                <main className="page-curl">
-                  <div className="flex flex-col lg:flex-row">
+                <main className="page-curl flex-1 min-h-0">
+                  <div className="flex h-full min-h-0 flex-col lg:flex-row">
                     {/* Main page area */}
-                    <div className="flex-1 p-6 lg:p-10 page-content" key={activeCategory || "all"}>
+                    <div className="page-content min-h-0 flex-1 overflow-y-auto p-6 lg:p-10" key={activeCategory || "all"}>
                       {filteredCollections.map((collection, ci) => {
                         const sectionStart = pageCounter
                         pageCounter += collection.designs.length
@@ -363,8 +370,8 @@ export function SwatchBook() {
                       })}
                     </div>
 
-                    {/* Detail sidebar (inserted card) */}
-                    <SwatchDetail design={selectedDesign} />
+                    {/* Right sidebar area */}
+                    {sidebar ?? <SwatchDetail design={selectedDesign} />}
                   </div>
                 </main>
               </div>
@@ -373,8 +380,8 @@ export function SwatchBook() {
         </div>
 
         {/* ── COLOPHON / BACK COVER ── */}
-        <footer className="pb-12 px-6">
-          <div className="max-w-5xl mx-auto text-center">
+        <footer className="hidden pb-12 px-6">
+          <div className="mx-auto w-full max-w-[1600px] text-center">
             {/* Ornamental rule */}
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="w-20 h-px bg-foreground/10" />

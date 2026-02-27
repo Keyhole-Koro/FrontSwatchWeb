@@ -1,5 +1,5 @@
-import { SwatchBook } from "@/components/swatch-book"
+import { RealtimeWorkbench } from "@/components/realtime-workbench"
 
 export default function Page() {
-  return <SwatchBook />
+  return <RealtimeWorkbench />
 }
