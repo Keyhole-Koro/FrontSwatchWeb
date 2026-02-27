@@ -1,0 +1,404 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.96 0.005 80);
+  --foreground: oklch(0.22 0.01 50);
+  --card: oklch(0.98 0.003 80);
+  --card-foreground: oklch(0.22 0.01 50);
+  --popover: oklch(0.98 0.003 80);
+  --popover-foreground: oklch(0.22 0.01 50);
+  --primary: oklch(0.30 0.02 50);
+  --primary-foreground: oklch(0.96 0.005 80);
+  --secondary: oklch(0.92 0.008 80);
+  --secondary-foreground: oklch(0.30 0.02 50);
+  --muted: oklch(0.92 0.008 80);
+  --muted-foreground: oklch(0.50 0.01 50);
+  --accent: oklch(0.55 0.06 30);
+  --accent-foreground: oklch(0.98 0.003 80);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.86 0.01 80);
+  --input: oklch(0.86 0.01 80);
+  --ring: oklch(0.55 0.06 30);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.25rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.18 0.01 50);
+  --foreground: oklch(0.92 0.005 80);
+  --card: oklch(0.22 0.01 50);
+  --card-foreground: oklch(0.92 0.005 80);
+  --popover: oklch(0.22 0.01 50);
+  --popover-foreground: oklch(0.92 0.005 80);
+  --primary: oklch(0.92 0.005 80);
+  --primary-foreground: oklch(0.22 0.01 50);
+  --secondary: oklch(0.28 0.01 50);
+  --secondary-foreground: oklch(0.92 0.005 80);
+  --muted: oklch(0.28 0.01 50);
+  --muted-foreground: oklch(0.65 0.01 50);
+  --accent: oklch(0.65 0.06 30);
+  --accent-foreground: oklch(0.18 0.01 50);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.32 0.01 50);
+  --input: oklch(0.32 0.01 50);
+  --ring: oklch(0.65 0.06 30);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans, 'Inter'), 'Inter Fallback', sans-serif;
+  --font-serif: var(--font-serif, 'Cormorant Garamond'), 'Cormorant Garamond Fallback', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ── Book-themed utilities ───────────────────────────────── */
+
+/* Paper grain texture overlay */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  z-index: 1;
+}
+
+/* Book container — main wrapper */
+.book-container {
+  position: relative;
+  background: var(--card);
+  border-radius: 2px 8px 8px 2px;
+  box-shadow:
+    /* Depth shadow */
+    0 20px 60px -15px rgba(0,0,0,0.25),
+    0 10px 30px -10px rgba(0,0,0,0.15),
+    /* Page edges - stacked pages effect */
+    3px 3px 0 0 oklch(0.91 0.008 80),
+    5px 5px 0 0 oklch(0.89 0.008 80),
+    7px 7px 0 0 oklch(0.87 0.008 80),
+    /* Subtle glow */
+    0 0 80px -20px rgba(0,0,0,0.08);
+}
+
+/* Spine — left edge stitching effect */
+.book-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  background: linear-gradient(
+    to right,
+    oklch(0.42 0.03 50),
+    oklch(0.48 0.03 50) 60%,
+    oklch(0.55 0.02 60) 85%,
+    transparent 100%
+  );
+  border-radius: 2px 0 0 2px;
+  z-index: 10;
+}
+
+/* Spine stitch marks */
+.book-spine::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    oklch(0.65 0.02 60) 0px,
+    oklch(0.65 0.02 60) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+  opacity: 0.6;
+}
+
+/* Spine vertical title */
+.book-spine-title {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: left center;
+  white-space: nowrap;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: oklch(0.78 0.01 60);
+  z-index: 11;
+}
+
+/* Page curl — right side shadow */
+.page-curl {
+  position: relative;
+}
+.page-curl::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: -2px;
+  bottom: 16px;
+  width: 20px;
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,0.06) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  border-radius: 0 4px 4px 0;
+  z-index: 2;
+}
+
+/* Chapter tab — index cuts on the top edge */
+.chapter-tab {
+  position: relative;
+  padding: 8px 18px;
+  transition: all 0.25s ease;
+}
+.chapter-tab::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.25s ease;
+}
+.chapter-tab.active {
+  background: var(--card);
+  border-radius: 4px 4px 0 0;
+}
+.chapter-tab.active::before {
+  background: var(--accent);
+}
+
+/* Page number */
+.page-number {
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: 0.1em;
+}
+
+/* Photo mount corners (for swatches) */
+.photo-mount {
+  position: relative;
+}
+.photo-mount::before,
+.photo-mount::after,
+.photo-mount .mount-bl,
+.photo-mount .mount-br {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 5;
+  opacity: 0.5;
+}
+.photo-mount::before {
+  content: '';
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid oklch(0.5 0.02 50);
+  border-left: 2px solid oklch(0.5 0.02 50);
+}
+.photo-mount::after {
+  content: '';
+  top: -2px;
+  right: -2px;
+  border-top: 2px solid oklch(0.5 0.02 50);
+  border-right: 2px solid oklch(0.5 0.02 50);
+}
+.photo-mount .mount-bl {
+  bottom: -2px;
+  left: -2px;
+  border-bottom: 2px solid oklch(0.5 0.02 50);
+  border-left: 2px solid oklch(0.5 0.02 50);
+}
+.photo-mount .mount-br {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid oklch(0.5 0.02 50);
+  border-right: 2px solid oklch(0.5 0.02 50);
+}
+
+/* Bookmark ribbon */
+.bookmark-ribbon {
+  position: relative;
+}
+.bookmark-ribbon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 28px;
+  width: 18px;
+  height: 48px;
+  background: oklch(0.50 0.15 20);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  z-index: 15;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Insert card (detail sidebar) */
+.insert-card {
+  background: oklch(0.97 0.005 70);
+  border: 1px solid oklch(0.88 0.01 80);
+  box-shadow:
+    2px 2px 8px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* Decorative ornament divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(0.72 0.01 50),
+    transparent
+  );
+}
+
+/* Page transition */
+.page-content {
+  animation: pageIn 0.4s ease-out;
+}
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateX(8px) rotateY(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0);
+  }
+}
+
+/* Swatch hand-placed rotations */
+.swatch-rotate-1 { transform: rotate(-1.5deg); }
+.swatch-rotate-2 { transform: rotate(0.8deg); }
+.swatch-rotate-3 { transform: rotate(-0.5deg); }
+.swatch-rotate-4 { transform: rotate(1.2deg); }
+.swatch-rotate-5 { transform: rotate(-0.8deg); }
+.swatch-rotate-6 { transform: rotate(1.5deg); }
+.swatch-rotate-7 { transform: rotate(-1deg); }
+.swatch-rotate-8 { transform: rotate(0.5deg); }
+.swatch-rotate-9 { transform: rotate(-1.8deg); }
+
+/* Dark mode overrides for book */
+.dark .book-container {
+  box-shadow:
+    0 20px 60px -15px rgba(0,0,0,0.5),
+    0 10px 30px -10px rgba(0,0,0,0.35),
+    3px 3px 0 0 oklch(0.20 0.008 50),
+    5px 5px 0 0 oklch(0.18 0.008 50),
+    7px 7px 0 0 oklch(0.16 0.008 50),
+    0 0 80px -20px rgba(0,0,0,0.2);
+}
+.dark .book-spine {
+  background: linear-gradient(
+    to right,
+    oklch(0.22 0.02 50),
+    oklch(0.28 0.02 50) 60%,
+    oklch(0.32 0.015 50) 85%,
+    transparent 100%
+  );
+}
+.dark .insert-card {
+  background: oklch(0.24 0.008 50);
+  border-color: oklch(0.30 0.01 50);
+}
+.dark .photo-mount::before,
+.dark .photo-mount::after,
+.dark .photo-mount .mount-bl,
+.dark .photo-mount .mount-br {
+  border-color: oklch(0.55 0.02 50);
+}
